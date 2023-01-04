@@ -1,0 +1,44 @@
+1. Создание таблицы Альпинист
+
+CREATE TABLE IF NOT EXISTS tb_mountaineers(" +
+                "mountaineer_id SERIAL PRIMARY KEY," +
+                "name VARCHAR(100) NOT NULL," +
+                "address VARCHAR(100) NOT NULL," +
+                "age INTEGER NOT NULL" +
+                ")";
+    Тут не уверена насчет группы (нужно ли задавать здесь связи между таблицами?)
+
+2. Добавление данных в таблицу Альпинист
+
+INSERT INTO tb_mountaineers (name, address, age) VALUES (?, ?)
+или
+INSERT INTO tb_mountaineers (name, address, age) VALUES ("Василий", "Россия", 20)
+
+3. Изменение имени альпиниста
+
+UPDATE tb_mountaineers SET name = ? WHERE author_id = ?
+или
+UPDATE tb_mountaineers SET name = "Аркадий" WHERE author_id = 1
+
+4. Получение идентификатором и имен альпинистов старше 30 и младше 50 лет
+
+SELECT mountaineer_id, name FROM tb_mountaineers WHERE age > 30 AND age < 50
+
+5. Получение названий гор, высота которых больше указанной
+
+SELECT name FROM tb_mountains WHERE height > ?
+
+6. Получение страны, в которой расположена гора с определенным названием
+
+SELECT country FROM tb_mountains WHERE name = ?
+
+7. Получение идентификаторов, которые совершали восхождения в прошлом
+
+8. Получение идентификаторов групп, которые совершали восхождения на гору с определенным названием
+
+SELECT group_id FROM tb_groups WHERE mountain_id = (SELECT mountain_id FROM tb_mountains WHERE name = ?)
+
+9. Получение идентификатором и имен альпинистов, которые совершали восхождения на горы, высота которых от ... до ...
+
+SELECT group_id, name FROM tb_groups WHERE mountain_id = (SELECT mountain_id FROM tb_mountains WHERE height > ? AND height < ?)
+
