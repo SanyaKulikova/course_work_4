@@ -18,9 +18,9 @@ public class Group {
     @Column(name = "is_recruited")
     private boolean isRecruited;
 
-    @OneToMany(mappedBy = "group")
+    @ManyToMany(mappedBy = "groups")
     private List<Mountaineer> mountaineers;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Mountain mountain;
     @Column(name = "number_of_mountaineers")
     private int mountaineerCount;

@@ -2,6 +2,8 @@ package ru.kulikova.common;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_mountains")
 public class Mountain {
@@ -16,8 +18,8 @@ public class Mountain {
     @Column(nullable = false)
     private double height;
 
-    @OneToOne(mappedBy = "mountain")
-    private Group group;
+    @OneToMany(mappedBy = "mountain")
+    private List<Group> groups;
 
 //    public Mountain(String mountainName, String country, double height) {
 //        setMountainName(mountainName);
@@ -33,13 +35,14 @@ public class Mountain {
         this.id = id;
     }
 
-    public Group getGroup() {
-        return group;
+    public List<Group> getGroups() {
+        return groups;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
+
 
     public void setMountainName(String mountainName){
         if (mountainName == null || mountainName.length() < 4) {
@@ -77,7 +80,7 @@ public class Mountain {
                 "mountainName='" + mountainName + '\'' +
                 ", country='" + country + '\'' +
                 ", height=" + height +
-                ", group=" + group +
+                ", groups=" + groups +
                 '}';
     }
 }

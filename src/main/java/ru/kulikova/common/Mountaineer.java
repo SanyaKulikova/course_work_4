@@ -2,6 +2,8 @@ package ru.kulikova.common;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_mountaineers")
 public class Mountaineer {
@@ -15,8 +17,8 @@ public class Mountaineer {
     private String address;
     @Column(nullable = false)
     private int age;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Group group;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Group> groups;
 
 
 
@@ -28,12 +30,12 @@ public class Mountaineer {
         this.id = id;
     }
 
-    public Group getGroup() {
-        return group;
+    public List<Group> getGroups() {
+        return groups;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 
     public int getAge() {
@@ -67,13 +69,14 @@ public class Mountaineer {
         return address;
     }
 
+
     @Override
     public String toString() {
         return "Mountaineer{" +
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", age=" + age +
-                ", group=" + group +
+                ", groups=" + groups +
                 '}';
     }
 }

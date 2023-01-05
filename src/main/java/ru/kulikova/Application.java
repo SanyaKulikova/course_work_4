@@ -8,6 +8,8 @@ import ru.kulikova.common.Mountain;
 import ru.kulikova.common.Mountaineer;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -48,11 +50,20 @@ public class Application {
         group01.addMountaineer(mountaineer03);
         group01.addMountaineer(mountaineer02);
 
-        mountaineer01.setGroup(group01);
-        mountaineer02.setGroup(group01);
-        mountaineer03.setGroup(group01);
+        List<Group> groups01= new ArrayList<>();
+        List<Group> groups02= new ArrayList<>();
+        List<Group> groups03= new ArrayList<>();
+        mountaineer01.setGroups(groups01);
+        mountaineer02.setGroups(groups02);
+        mountaineer03.setGroups(groups03);
 
-        mountain01.setGroup(group01);
+        mountaineer01.getGroups().add(group01);
+        mountaineer02.getGroups().add(group01);
+        mountaineer03.getGroups().add(group01);
+
+        List<Group> mountainGroup = new ArrayList<>();
+        mountain01.setGroups(mountainGroup);
+        mountain01.getGroups().add(group01);
 
         group01.setDateOfClimbing(LocalDateTime.now());
 
